@@ -63,7 +63,7 @@ const ProductRegist: React.FC<ProductRegistProps> = ({
 
     try {
       // Supabase에 데이터 저장
-      const { data, error: supabaseError } = await supabase
+      const {  error: supabaseError } = await supabase
         .from('products')
         .insert([
           {
