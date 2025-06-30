@@ -39,7 +39,7 @@ const subjects: { [key: number]: string[] } = {
   3: ['웹프로그래밍 실무']
 };
 //category 목록
-const categories = ['개인프로젝트', '팀프로젝트', '대회명1', '대회명2', '대회명3'];
+//const categories = ['개인프로젝트', '팀프로젝트', '대회명1', '대회명2', '대회명3'];
 
 const ProductGallery: React.FC = () => {
   // 현재 선택된 학년 상태
