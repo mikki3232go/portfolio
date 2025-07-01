@@ -35,15 +35,15 @@ const grades = [1, 2, 3];
 // 학년별 과목 맵
 const subjects: { [key: number]: string[] } = {
   1: ['화면구현'],
-  2: ['웹프로그래밍', '프론트엔드 기초'],
-  3: ['웹프로그래밍 실무']
+  2: ['웹프로그래밍', '프론트엔드 기초', '응용프로그래밍개발'],
+  
 };
 //category 목록
 //const categories = ['개인프로젝트', '팀프로젝트', '대회명1', '대회명2', '대회명3'];
 
 const ProductGallery: React.FC = () => {
   // 현재 선택된 학년 상태
-  const [selectedGrade, setSelectedGrade] = useState(1);
+  const [selectedGrade, setSelectedGrade] = useState(2);
   // 작품 목록 상태
   const [productList, setProductList] = useState<Product[]>([]);
   // 모달 표시 여부 상태
