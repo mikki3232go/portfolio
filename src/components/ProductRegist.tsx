@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../ProductGallery.module.css';
 import { supabase } from '../lib/supabase';
 
@@ -54,6 +54,37 @@ const ProductRegist: React.FC<ProductRegistProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   // 에러 메시지
   const [error, setError] = useState<string | null>(null);
+
+  const [user, setUser] = useState<any>(null);
+
+  // 로그인 상태 확인
+  useEffect(() => {
+    const session = supabase.auth.getSession().then(({ data }) => {
+      setUser(data.session?.user ?? null);
+    });
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => {
+      listener.subscription.unsubscribe();
+    };
+  }, []);
+
+  // 구글 로그인 함수
+  const handleGoogleLogin = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: 'https://portfolio-git-main-mikki3232gos-projects.vercel.app'
+      }
+    });
+  };
+
+  // 로그아웃 함수
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+  };
 
   // 폼 제출 처리
   const handleSubmit = async (e: React.FormEvent) => {
